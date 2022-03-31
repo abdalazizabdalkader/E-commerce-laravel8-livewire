@@ -15,9 +15,29 @@ class ShopComponent extends Component
         return redirect()->route('product.cart');
     }
     use WithPagination;
+    public $sorting;
+    public $sizePage;
+    public function mount()
+    {
+        $this->sorting = 'default';
+        $this->sizePage = 12;
+    }
     public function render()
     {
-        $products = Product::paginate(12);
+        if($this->sorting === 'date')
+        {
+        $products = Product::orderBy('created_at','DESC')->paginate($this->sizePage);
+
+        }elseif ($this->sorting === 'price')
+        {
+        $products = Product::orderBy('regular_price','ASC')->paginate($this->sizePage);
+        }elseif($this->sorting === 'price-desc')
+        {
+            $products = Product::orderBy('regular_price','DESC')->paginate($this->sizePage);
+        }else
+        {
+            $products = Product::paginate($this->sizePage);
+        }
         return view('livewire.shop-component',['products'=>$products])->layout('layouts.base');
     }
 }
