@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Livewire\Admin\AddCategoryAdminComponent;
 use App\Http\Livewire\Admin\AdminDashboardComponent;
+use App\Http\Livewire\Admin\CategoryAdminComponent;
 use App\Http\Livewire\CartComponent;
 use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\CheckoutComponent;
@@ -32,7 +34,7 @@ use Illuminate\Support\Facades\Route;
     Route::get('/checkout',CheckoutComponent::class);
     Route::get('/product/details/{slug}',DetailsComponent::class)->name('product.details');
     Route::get('/product-category/{category_slug}',CategoryComponent::class)->name('product.category');
-    Route::get('search', SearchComponent::class)->name('product.search');
+    Route::get('/search', SearchComponent::class)->name('product.search');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
@@ -44,4 +46,6 @@ Route::middleware(['auth:sanctum', 'verified',])->group(function(){
 //for admins
 Route::middleware(['auth:sanctum', 'verified','AuthAdmin'])->group(function(){
     Route::get('/admin/dashboard',AdminDashboardComponent::class)->name('admin.dashboard');
+    Route::get('/admin/categories', CategoryAdminComponent::class)->name('admin.categories');
+    Route::get('/admin/addcategories', AddCategoryAdminComponent::class)->name('admin.addcategories');
 });
