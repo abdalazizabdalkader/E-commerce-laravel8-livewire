@@ -12,12 +12,17 @@ class ShopComponent extends Component
     use WithPagination;
     public $sorting;
     public $sizePage;
-    // public $categories;
+    public $min_price_filter;
+    public $max_price_filter;
+
     public function mount()
-    {
+    {   //sorting product
         $this->sorting = 'default';
         $this->sizePage = 12;
-        // $this->categories= $categories;
+
+        //price filter
+        $this->min_price_filter = 1;
+        $this->max_price_filter = 1000;
     }
 
     public function store($product_id, $product_name, $product_price)
@@ -32,17 +37,17 @@ class ShopComponent extends Component
         $categories = Category::all();
         if($this->sorting === 'date')
         {
-        $products = Product::orderBy('created_at','DESC')->paginate($this->sizePage);
+        $products = Product::whereBetween('regular_price',[$this->min_price_filter, $this->max_price_filter])->orderBy('created_at','DESC')->paginate($this->sizePage);
 
         }elseif ($this->sorting === 'price')
         {
-        $products = Product::orderBy('regular_price','ASC')->paginate($this->sizePage);
+        $products = Product::whereBetween('regular_price',[$this->min_price_filter, $this->max_price_filter])->orderBy('regular_price','ASC')->paginate($this->sizePage);
         }elseif($this->sorting === 'price-desc')
         {
-            $products = Product::orderBy('regular_price','DESC')->paginate($this->sizePage);
+            $products = Product::whereBetween('regular_price',[$this->min_price_filter, $this->max_price_filter])->orderBy('regular_price','DESC')->paginate($this->sizePage);
         }else
         {
-            $products = Product::paginate($this->sizePage);
+            $products = Product::whereBetween('regular_price',[$this->min_price_filter, $this->max_price_filter])->paginate($this->sizePage);
         }
         return view('livewire.shop-component',['products'=>$products, 'categories'=>$categories])->layout('layouts.base');
     }
