@@ -32,7 +32,8 @@
                                     <th>Imag</th>
                                     <th>Name</th>
                                     <th>Stock</th>
-                                    <th>Price</th>
+                                    <th>Regular Price</th>
+                                    <th>Sale Price</th>
                                     <th>Category</th>
                                     <th>Date</th>
                                     <th>Action</th>
@@ -46,11 +47,12 @@
                                         <th>{{ $product->name }}</th>
                                         <th>{{ $product->stoch_status }}</th>
                                         <th>{{ $product->regular_price }}</th>
+                                        <th>{{ $product->sale_price }}</th>
                                         <th>{{ $product->category->name}}</th>
                                         <th>{{ $product->created_at }}</th>
                                         <th>
                                             <a href="{{route('admin.editproduct',['product_slug'=>$product->slug])}}"><i class="fa fa-edit fa-2x"></i></a>
-                                            <a href="#" class="px-10" wire:click.prevent='deleteProduct({{$product->id}})'><i class="fa fa-times fa-2x text-danger ml-12 "></i></a>
+                                            <a href="#" class="px-10" wire:click.prevent='deleteProduct({{$product->id}})'><i class="ml-12 fa fa-times fa-2x text-danger "></i></a>
                                         </th>
                                     </tr>
                                 @endforeach
