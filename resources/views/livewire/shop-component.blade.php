@@ -53,10 +53,32 @@
                     </div>
 
                 </div><!--end wrap shop control-->
-
+                    <style>
+                        .wish-product{
+                            position: absolute;
+                            left: 0;
+                            right: 30px;
+                            top: 10%;
+                            z-index: 99;
+                            text-align: right;
+                            padding-top: 0;
+                        }
+                        .wish-product .fa{
+                            color: #cdcdcd;
+                            font-size: 32px;
+                        }
+                        .wish-product .fa:hover{
+                            color: #ff7007;
+                        }
+                        .wish-product .fill{
+                            color: #ff7007;
+                        }
+                    </style>
                 <div class="row">
-
                     <ul class="product-list grid-products equal-container">
+                        @php
+                            $wishItem = Cart::instance('wishList')->content()->pluck('id');
+                        @endphp
                         @foreach ($products as $product )
                         <li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
                             <div class="product product-style-3 equal-elem ">
@@ -71,6 +93,17 @@
                                     <a href="#" class="btn add-to-cart"
                                         wire:click.prevent="store({{$product->id}},'{{$product->name}}', {{$product->regular_price}})"
                                         >Add To Cart</a>
+                                    <div class="wish-product">
+                                        @if ($wishItem->contains($product->id))
+                                        <a href="#"
+                                        wire:click.prevent="removeWishList({{$product->id}})"
+                                        ><i class="fa fa-heart fill"></i></a>
+                                        @else
+                                        <a href="#"
+                                        wire:click.prevent="addWishList({{$product->id}},'{{$product->name}}', {{$product->regular_price}})"
+                                        ><i class="fa fa-heart"></i></a>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </li>

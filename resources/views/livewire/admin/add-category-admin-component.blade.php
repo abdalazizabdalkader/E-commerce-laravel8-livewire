@@ -12,21 +12,24 @@
                     </div>
                    </div>
                    <div class="panel-body">
+                       @if (Session::has('message'))
+                           <div class="alert alert-success">{{Session::get('message')}}</div>
+                       @endif
                         <form action="" class="form-horizontal" wire:submit.prevent='storeCategory()'>
-                            @if (Session::has('message'))
-                                <div class="alert alert-success">{{Session::get('message')}}</div>
-                            @endif
                             <div class="form-group">
                                 <label  class="col-md-4 control-label" >Category name</label>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control input-md" wire:model='name' wire:keyup='generateSlug()'>
+                                    @error('name') <p class="text-danger">{{$message}}</p> @enderror
                                 </div>
                             </div>
 
-                            <div class="form-group hidden">
+                            <div class="form-group ">
                                 <label  class="col-md-4 control-label">Category Slug</label>
                                 <div class="col-md-4">
                                     <input type="text" class="form-control input-md" wire:model='slug'>
+                                    @error('slug') <p class="text-danger">{{$message}}</p> @enderror
+
                                 </div>
                             </div>
 

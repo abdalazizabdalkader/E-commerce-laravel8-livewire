@@ -27,9 +27,32 @@ class ShopComponent extends Component
 
     public function store($product_id, $product_name, $product_price)
     {
-        Cart::add($product_id, $product_name,1, $product_price)->associate('App\Models\Product');
+
+        Cart::instance('cart')->add($product_id, $product_name,1, $product_price)->associate('App\Models\Product');
+        $this->emitTo('cart-count-component','refreshComponent');
         session()->flash('success_message',$product_name.' added in Cart');
         return redirect()->route('product.cart');
+    }
+    public function addWishList($product_id, $product_name, $product_price)
+    {
+        Cart::instance('wishList')->add($product_id, $product_name,1, $product_price)->associate('App\Models\Product');
+        $this->emitTo('wishlist-count-component','refreshComponent');
+    }
+
+    public function removeWishList($product_id)
+    {
+
+        dd(Cart::instance('wishList')->content());
+        foreach(Cart::instance('wishList')->content() as $item)
+        {
+            if($item->id == $product_id)
+            {
+                // dd($item->id);
+                Cart::instance('wishList')->remove($item->rowId);
+                $this->emitTo('wishlist-count-component','refreshComponent');
+                return;
+            }
+        }
     }
 
     public function render()

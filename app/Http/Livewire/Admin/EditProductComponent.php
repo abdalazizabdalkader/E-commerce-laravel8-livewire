@@ -19,7 +19,7 @@ class EditProductComponent extends Component
     public $regular_price;
     public $sale_price;
     public $SKU;
-    public $stock;
+    public $stock_status;
     public $featured;
     public $quantity;
     public $image;
@@ -32,6 +32,8 @@ class EditProductComponent extends Component
     {
         $this->slug = Str::slug($this->name);
     }
+
+
 
     public function mount($product_slug)
     {
@@ -47,11 +49,45 @@ class EditProductComponent extends Component
         $this->featured = $product->featured;
         $this->quantity = $product->quantity;
         $this->image = $product->image;
+
         $this->category_id = $product->category_id;
         $this->product_id = $product->id;
     }
+
+    public function updated($fields)
+    {
+        $this->validateOnly($fields,[
+            'name' => 'required ',
+            'slug' => 'required |unique:products',
+            'short_description' => 'required',
+            'description' => 'required',
+            'regular_price' => 'required |numeric',
+            'sale_price' => 'numeric',
+            'SKU' => 'required',
+            'stock_status' => 'required',
+            'quantity' => 'required |numeric',
+            'new_image' => 'required|mimes: jpeg,jpg,png',
+            'category_id' => 'required ',
+        ]);
+    }
+
+
     public function updateProduct()
     {
+        $this->validate([
+            'name' => 'required ',
+            'slug' => 'required |unique:products',
+            'short_description' => 'required',
+            'description' => 'required',
+            'regular_price' => 'required |numeric',
+            'sale_price' => 'numeric',
+            'SKU' => 'required',
+            'stock_status' => 'required',
+            'quantity' => 'required |numeric',
+            'new_image' => 'required|mimes: jpeg,jpg,png',
+            'category_id' => 'required',
+        ]);
+
         $product =Product::find($this->product_id);
         $product->name = $this->name;
         $product->slug = $this->slug;

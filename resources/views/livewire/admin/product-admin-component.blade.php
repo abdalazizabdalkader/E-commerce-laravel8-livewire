@@ -52,7 +52,7 @@
                                         <th>{{ $product->created_at }}</th>
                                         <th>
                                             <a href="{{route('admin.editproduct',['product_slug'=>$product->slug])}}"><i class="fa fa-edit fa-2x"></i></a>
-                                            <a href="#" class="px-10" wire:click.prevent='deleteProduct({{$product->id}})'><i class="ml-12 fa fa-times fa-2x text-danger "></i></a>
+                                            <a href="#" class="px-10" onclick="confirm('Are you sure, You want to delete ({{$product->name}}) category') || event.stopImmediatePropagation()"  wire:click.prevent='deleteProduct({{$product->id}})'><i class="ml-12 fa fa-times fa-2x text-danger "></i></a>
                                         </th>
                                     </tr>
                                 @endforeach

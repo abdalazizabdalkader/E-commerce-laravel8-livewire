@@ -145,27 +145,11 @@
                         @livewire('search-header-component')
 
 						<div class="wrap-icon right-section">
-							<div class="wrap-icon-section wishlist">
-								<a href="#" class="link-direction">
-									<i class="fa fa-heart" aria-hidden="true"></i>
-									<div class="left-info">
-										<span class="index">0 item</span>
-										<span class="title">Wishlist</span>
-									</div>
-								</a>
-							</div>
-							<div class="wrap-icon-section minicart">
-                                @if (Cart::count() > 0)
 
-								<a href="{{route('product.cart')}}" class="link-direction">
-									<i class="fa fa-shopping-basket" aria-hidden="true"></i>
-									<div class="left-info">
-                                        <span class="index">{{Cart::count()}} Item</span>
-										<span class="title">CART</span>
-									</div>
-								</a>
-                                @endif
-							</div>
+							@livewire('wishlist-count-component')
+
+							@livewire('cart-count-component')
+
 							<div class="wrap-icon-section show-up-after-1024">
 								<a href="#" class="mobile-navigation">
 									<span></span>
@@ -489,6 +473,8 @@
     <script src="{{asset('assets/js/bootstrap-datetimepicker.min.js')}}"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.5.1/nouislider.min.js" integrity="sha512-T5Bneq9hePRO8JR0S/0lQ7gdW+ceLThvC80UjwkMRz+8q+4DARVZ4dqKoyENC7FcYresjfJ6ubaOgIE35irf4w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> --}}
     <script src="{{asset('assets/js/nouislider.min.js')}}"></script>
+    <script src='https://cdn.tiny.cloud/1/oo0zb7yfylwo5nup32n1ulgd81vx6bdp3k4i3cbs4qn7y657/tinymce/5/tinymce.min.js' referrerpolicy="origin">
+    </script>
     @livewireScripts
 
     @stack('scripts')
