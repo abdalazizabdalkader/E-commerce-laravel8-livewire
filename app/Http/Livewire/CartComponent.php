@@ -36,6 +36,7 @@ class CartComponent extends Component
 
         Cart::instance('cart')->destroy();
         $this->emitTo('cart-count-component','refreshComponent');
+        
     }
 
     public function render()

@@ -44,8 +44,8 @@
                                 <a href="{{route('product.details',['slug'=>$item->model->slug])}}" class="product-name"><span> {{$item->model->name}}</span></a>
                                 <div class="wrap-price"><span class="product-price">{{$item->model->regular_price}}</span></div>
                                 <a href="#" class="btn add-to-cart"
-                                    wire:click.prevent="store({{$item->model->id}},'{{$item->model->name}}', {{$item->model->regular_price}})"
-                                    >Add To Cart</a>
+                                    wire:click.prevent="moveProductToCart('{{$item->rowId}}')"
+                                    >Move To Cart</a>
                                 <div class="wish-product">
                                     <a href="#"
                                     wire:click.prevent="removeWishList({{$item->model->id}})"
