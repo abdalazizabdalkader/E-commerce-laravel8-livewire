@@ -9,7 +9,6 @@
             </ul>
         </div>
         <div class=" main-content-area">
-
             <div class="wrap-iten-in-cart">
                 @if (Session::has('success_message'))
                     <div class="alert alert-success">
@@ -36,11 +35,12 @@
                                 <a class="btn btn-increase" wire:click.prevent="increaseQuantity('{{$item->rowId}}')" ></a>
                                 <a class="btn btn-reduce" wire:click.prevent="decreaseQuantity('{{$item->rowId}}')" ></a>
                             </div>
+                        <div class='text-center'><a wire:click.prevent='moveToSaveLater("{{$item->rowId}}")'>Save For Later</a></div>
                         </div>
                         <div class="price-field sub-total"><p class="price">${{$item->subtotal}}</p></div>
                         <div class="delete">
-                            <a  class="btn btn-delete" wire:click.prevent="destroyAll('{{$item->rowId}}')">
-                                <span>Delete from your cart</span>
+                            <a  class="btn btn-delete" wire:click.prevent="destroy('{{$item->rowId}}')">
+                                <span>Remove From Save Later</span>
                                 <i class="fa fa-times-circle" aria-hidden="true"></i>
                             </a>
                         </div>
@@ -73,6 +73,47 @@
             @else
             <h3 class="alert alert-danger">No item in Your Cart</h3>
             @endif
+
+            {{-- save later  --}}
+            <div class="wrap-iten-in-cart ">
+                <h4 class="title-box" style="border-bottom: 1px solid; padding-bottom:15px"> Save For Later</h4>
+                @if (Session::has('success_msg'))
+                    <div class="alert alert-success">
+                        {{Session::get('success_msg')}}
+                    </div>
+                @endif
+                @if (Cart::instance('savelater')->count() > 0)
+                <h3 class="box-title">Products Name</h3>
+                <ul class="products-cart">
+                    @foreach (Cart::instance('savelater')->content() as $item )
+                    <li class="pr-cart-item">
+                        <div class="product-image">
+                            <figure><img src="{{asset('assets/images/products')}}/{{$item->model->image}}"
+                                            alt=""></figure>
+                        </div>
+                        <div class="product-name">
+                            <a class="link-to-product" href="{{route('product.details',['slug'=>$item->model->slug])}}"
+                                >{{$item->model->name}}</a>
+                        </div>
+                        <div class="price-field produtc-price"><p class="price">${{$item->model->regular_price}}</p></div>
+                        <div class="quantity">
+
+                        <div class='text-center'><a wire:click.prevent='moveFromSaveLaterToCart("{{$item->rowId}}")'>Add to Cart</a></div>
+                        </div>
+                        <div class="price-field sub-total"><p class="price">${{$item->subtotal}}</p></div>
+                        <div class="delete">
+                            <a  class="btn btn-delete" wire:click.prevent="removeFromSaveLater('{{$item->rowId}}')">
+                                <span>Delete from your cart</span>
+                                <i class="fa fa-times-circle" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </li>
+                    @endforeach
+                </ul>
+                @endif
+            </div>
+
+
             <div class="wrap-show-advance-info-box style-1 box-in-site">
                 <h3 class="title-box">Most Viewed Products</h3>
                 <div class="wrap-products">

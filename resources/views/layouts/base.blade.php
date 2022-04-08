@@ -102,6 +102,10 @@
                             <a title="Sale Settings" href="{{route('admin.sale')}}">Sale Settings</a>
                         </li>
 
+                        <li class="menu-item" >
+                            <a title="Sale Settings" href="{{route('admin.coupon')}}">Mange coupons</a>
+                        </li>
+
                         <li class="menu-item">
                             <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                         </li>
