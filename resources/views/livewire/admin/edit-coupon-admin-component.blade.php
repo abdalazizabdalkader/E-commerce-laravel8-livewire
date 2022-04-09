@@ -15,7 +15,7 @@
                        @if (Session::has('message'))
                            <div class="alert alert-success">{{Session::get('message')}}</div>
                        @endif
-                        <form action="" class="form-horizontal" wire:submit.prevent='updateCoupon()'>
+                        <form action="" class="form-horizontal" wire:submit.prevent='updateCoupon'>
                             <div class="form-group">
                                 <label  class="col-md-4 control-label" >Code</label>
                                 <div class="col-md-4">

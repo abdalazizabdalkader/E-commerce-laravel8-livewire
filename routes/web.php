@@ -77,7 +77,7 @@ Route::middleware(['auth:sanctum', 'verified','AuthAdmin'])->group(function(){
     Route::get('/admin/home-categories',HomeCategoryAdminComponent::class)->name('admin.homecategory');
     Route::get('/admin/sale',SaleAdminComponent::class)->name('admin.sale');
 
-    Route::get('/admin/coupons',CouponAdminComponent::class)->name('admin.coupon');
+    Route::get('/admin/coupon',CouponAdminComponent::class)->name('admin.coupon');
     Route::get('/admin/coupon/add',AddCouponAdminComponent::class)->name('admin.addcoupon');
-    Route::get('/admin/coupon/edit/{coupon_id}',EditCouponAdminComponent::class)->name('admin.editcoupon');
+    Route::get('/admin/coupon/edit/{coupon_id}', EditCouponAdminComponent::class)->name('admin.editcoupon');
 });
