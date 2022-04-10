@@ -40,7 +40,6 @@
                                 <div class="col-md-4">
                                     <input type="text" class="form-control input-md" wire:model='value'>
                                     @error('value') <p class="text-danger">{{$message}}</p> @enderror
-
                                 </div>
                             </div>
 
@@ -49,7 +48,14 @@
                                 <div class="col-md-4">
                                     <input type="text" class="form-control input-md" wire:model='cart_value'>
                                     @error('cart_value') <p class="text-danger">{{$message}}</p> @enderror
+                                </div>
+                            </div>
 
+                            <div class="form-group ">
+                                <label  class="col-md-4 control-label">Expiry Date</label>
+                                <div class="col-md-4">
+                                    <input type="text" class="form-control input-md" id="expiry_date" wire:model='expiry_date' wire:ignore>
+                                    @error('expiry_date') <p class="text-danger">{{$message}}</p> @enderror
                                 </div>
                             </div>
 
@@ -66,3 +72,17 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+    <script>
+        $(function(){
+            $('#expiry_date').datetimepicker({
+                format : 'Y-MM-DD ',
+            })
+            .on('dp.change',function(ev){
+                var data = $('#expiry_date').val();
+                @this.set('expiry_date',data);
+            });
+        });
+    </script>
+@endpush

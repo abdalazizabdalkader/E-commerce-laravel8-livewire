@@ -24,6 +24,7 @@ use App\Http\Livewire\ProductAdminComponent;
 // use App\Http\Livewire\SaleAdminComponent;
 use App\Http\Livewire\SearchComponent;
 use App\Http\Livewire\ShopComponent;
+use App\Http\Livewire\ThankyouComponent;
 use App\Http\Livewire\User\UserDashboardComponent;
 use App\Http\Livewire\WishListComponent;
 use App\Models\Sale;
@@ -52,7 +53,8 @@ use Illuminate\Support\Facades\Route;
     Route::get('/product-category/{category_slug}',CategoryComponent::class)->name('product.category');
     Route::get('/search', SearchComponent::class)->name('product.search');
     Route::get('/wishlist',WishListComponent::class)->name('product.wishlist');
-
+    Route::get('/checkout',CheckoutComponent::class)->name('checkout');
+    Route::get('/thankyou',ThankyouComponent::class)->name('thankyou');
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
 // })->name('dashboard');
