@@ -103,7 +103,11 @@
                         </li>
 
                         <li class="menu-item" >
-                            <a title="Sale Settings" href="{{route('admin.coupon')}}">Mange coupons</a>
+                            <a title="All Coupons" href="{{route('admin.coupon')}}">All coupons</a>
+                        </li>
+
+                        <li class="menu-item" >
+                            <a title="All Orders" href="{{route('admin.orders')}}">All Orders</a>
                         </li>
 
                         <li class="menu-item">

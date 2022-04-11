@@ -13,6 +13,7 @@ use App\Http\Livewire\Admin\EditHomeSliderAdminComponent;
 use App\Http\Livewire\Admin\EditProductComponent;
 use App\Http\Livewire\Admin\HomeCategoryAdminComponent;
 use App\Http\Livewire\Admin\HomeSliderAdminComponent;
+use App\Http\Livewire\Admin\OrdersAdminComponent;
 use App\Http\Livewire\Admin\ProductAdminComponent as AdminProductAdminComponent;
 use App\Http\Livewire\Admin\SaleAdminComponent;
 use App\Http\Livewire\CartComponent;
@@ -24,6 +25,7 @@ use App\Http\Livewire\ProductAdminComponent;
 // use App\Http\Livewire\SaleAdminComponent;
 use App\Http\Livewire\SearchComponent;
 use App\Http\Livewire\ShopComponent;
+use App\Http\Livewire\ThankyouComponent;
 use App\Http\Livewire\User\UserDashboardComponent;
 use App\Http\Livewire\WishListComponent;
 use App\Models\Sale;
@@ -52,7 +54,8 @@ use Illuminate\Support\Facades\Route;
     Route::get('/product-category/{category_slug}',CategoryComponent::class)->name('product.category');
     Route::get('/search', SearchComponent::class)->name('product.search');
     Route::get('/wishlist',WishListComponent::class)->name('product.wishlist');
-
+    Route::get('/checkout',CheckoutComponent::class)->name('checkout');
+    Route::get('/thankyou',ThankyouComponent::class)->name('thankyou');
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
 // })->name('dashboard');
@@ -60,8 +63,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:sanctum', 'verified',])->group(function(){
     Route::get('/user/dashboard',UserDashboardComponent::class)->name('user.dashboard');
 });
+
 //for admins
 Route::middleware(['auth:sanctum', 'verified','AuthAdmin'])->group(function(){
+
     Route::get('/admin/dashboard',AdminDashboardComponent::class)->name('admin.dashboard');
     Route::get('/admin/categories', CategoryAdminComponent::class)->name('admin.categories');
     Route::get('/admin/categories/add', AddCategoryAdminComponent::class)->name('admin.addcategories');
@@ -80,4 +85,6 @@ Route::middleware(['auth:sanctum', 'verified','AuthAdmin'])->group(function(){
     Route::get('/admin/coupon',CouponAdminComponent::class)->name('admin.coupon');
     Route::get('/admin/coupon/add',AddCouponAdminComponent::class)->name('admin.addcoupon');
     Route::get('/admin/coupon/edit/{coupon_id}', EditCouponAdminComponent::class)->name('admin.editcoupon');
+
+    Route::get('/admin/orders',OrdersAdminComponent::class)->name('admin.orders');
 });
