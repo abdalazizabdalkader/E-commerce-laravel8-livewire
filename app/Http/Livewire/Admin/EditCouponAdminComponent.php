@@ -25,7 +25,7 @@ class EditCouponAdminComponent extends Component
         $this->cart_value = $coupon->cart_value;
         $this->coupon_id = $coupon->id;
         $this->expiry_date = $coupon->expiry_date;
-    }
+}
 
     public function update($fields)
     {

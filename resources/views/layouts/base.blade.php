@@ -76,7 +76,7 @@
         @auth
             @if (Auth::user()->utype === 'ADM')
                 <li class="menu-item menu-item-has-children parent" >
-                    <a title="My acount" href="#">My acount ({{Auth::user()->name}})<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                    <a title="My acount" href="#">My acount ({{Auth::user()->name}})  ({{Auth::user()->utype}})<i class="fa fa-angle-down" aria-hidden="true"></i></a>
                     <ul class="submenu curency" >
                         <li class="menu-item" >
                             <a title="dashboard" href="{{route('admin.dashboard')}}">dashboard</a>

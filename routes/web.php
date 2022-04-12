@@ -62,13 +62,13 @@ use Illuminate\Support\Facades\Route;
 //for users or customers
 Route::middleware(['auth:sanctum', 'verified',])->group(function(){
     Route::get('/user/dashboard',UserDashboardComponent::class)->name('user.dashboard');
+    Route::get('/admin/categories', CategoryAdminComponent::class)->name('admin.categories');
 });
 
 //for admins
 Route::middleware(['auth:sanctum', 'verified','AuthAdmin'])->group(function(){
 
     Route::get('/admin/dashboard',AdminDashboardComponent::class)->name('admin.dashboard');
-    Route::get('/admin/categories', CategoryAdminComponent::class)->name('admin.categories');
     Route::get('/admin/categories/add', AddCategoryAdminComponent::class)->name('admin.addcategories');
     Route::get('/admin/categories/edit/{category_slug}',EditCategoryAdminComponent::class)->name('admin.editcategory');
     Route::get('/admin/products',AdminProductAdminComponent::class)->name('admin.product');
