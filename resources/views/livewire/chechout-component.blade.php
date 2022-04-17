@@ -108,7 +108,6 @@
                                 <p class="row-in-form">
                                     <label for="add">Line 2</label>
                                     <input  type="text" name="add" value="" placeholder="Street at apartment number" wire:model='s_line2'>
-                                    @error('s_line2')  <span class="text-danger">{{$message}}</span>  @enderror
                                 </p>
                                 <p class="row-in-form">
                                     <label for="country">Country<span>*</span></label>

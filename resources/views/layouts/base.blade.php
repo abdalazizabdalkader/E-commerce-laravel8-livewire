@@ -110,6 +110,10 @@
                             <a title="All Orders" href="{{route('admin.orders')}}">All Orders</a>
                         </li>
 
+                        <li class="menu-item" >
+                            <a title="Contact message" href="{{route('admin.contacts')}}">Contact massesges</a>
+                        </li>
+
                         <li class="menu-item">
                             <a href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
                         </li>
@@ -123,6 +127,13 @@
                 <ul class="submenu curency" >
                     <li class="menu-item" >
                         <a title="dashboard" href="{{route('user.dashboard')}}">dashboard</a>
+                    </li>
+                    <li class="menu-item" >
+                        <a title="dashboard" href="{{route('user.orders')}}">My Orders</a>
+                    </li>
+
+                    <li class="menu-item" >
+                        <a title="dashboard" href="{{route('user.changepassword')}}">Change Password</a>
                     </li>
 
                     <li class="menu-item">
@@ -202,7 +213,7 @@
 									<a href="/checkout" class="link-term mercado-item-title">Checkout</a>
 								</li>
 								<li class="menu-item">
-									<a href="contact-us.html" class="link-term mercado-item-title">Contact Us</a>
+									<a href="/contactus" class="link-term mercado-item-title">Contact Us</a>
 								</li>
 							</ul>
 						</div>
