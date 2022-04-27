@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Contact;
+use App\Models\Setting;
 use Livewire\Component;
 
 class ContactusComponent extends Component
@@ -39,6 +40,7 @@ class ContactusComponent extends Component
     }
     public function render()
     {
-        return view('livewire.contactus-component')->layout('layouts.base');
+        $setting = Setting::find(1);
+        return view('livewire.contactus-component',['setting'=>$setting])->layout('layouts.base');
     }
 }

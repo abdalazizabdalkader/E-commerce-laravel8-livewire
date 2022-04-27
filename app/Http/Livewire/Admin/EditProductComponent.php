@@ -2,8 +2,11 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\AttributeValue;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Productattribute;
+use App\Models\Subcategory;
 use Carbon\Carbon;
 use Livewire\Component;
 use Illuminate\Support\Str;
@@ -24,9 +27,17 @@ class EditProductComponent extends Component
     public $quantity;
     public $image;
     public $category_id;
+    public $subcategory_id;
 
     public $new_image;
     public $product_id;
+    public $images;
+    public $newImages;
+
+    public $attr;
+    public $inputs =[];
+    public $attribute_arr = [];
+    public $attribute_values;
 
     public function generateSlug()
     {
@@ -52,13 +63,26 @@ class EditProductComponent extends Component
 
         $this->category_id = $product->category_id;
         $this->product_id = $product->id;
+        $this->inputs = $product->attributevalue->where('product_id',$product->id)->unique('product_attribute_id')->pluck('product_attribute_id');
+        $this->attribute_arr = $product->attributevalue->where('product_id',$product->id)->unique('product_attribute_id')->pluck('product_attribute_id');
+        foreach($this->attribute_arr as $a_arr)
+        {
+            $allAttributeValue = AttributeValue::where('product_id',$product->id)->where('product_attribute_id' ,$a_arr)->get()->pluck('value');
+            $valueString ='';
+            foreach($allAttributeValue as $value)
+            {
+                $valueString .= $value;
+
+            }
+            $this->attribute_values[$a_arr] = rtrim($valueString, ',');
+        }
     }
 
     public function updated($fields)
     {
         $this->validateOnly($fields,[
             'name' => 'required ',
-            'slug' => 'required |unique:products',
+            'slug' => 'required ',
             'short_description' => 'required',
             'description' => 'required',
             'regular_price' => 'required |numeric',
@@ -66,9 +90,29 @@ class EditProductComponent extends Component
             'SKU' => 'required',
             'stock_status' => 'required',
             'quantity' => 'required |numeric',
-            'new_image' => 'required|mimes: jpeg,jpg,png',
             'category_id' => 'required ',
         ]);
+        if($this->new_image)
+        {
+            $this->validateOnly($fields,[
+                'new_image' => 'required|mimes: jpeg,jpg,png',
+            ]);
+        }
+    }
+    public function addAttr()
+    {
+        if(! $this->attribute_arr->contains($this->attr))
+        {
+            $this->inputs->push($this->attr);
+            $this->attribute_arr->push($this->attr);
+            // array_push($this->inputs,$this->attr);
+            // array_push($this->attribute_arr,$this->attr);
+        }
+    }
+
+    public function removeAttr($attr)
+    {
+        unset($this->inputs[$attr]);
     }
 
 
@@ -76,7 +120,7 @@ class EditProductComponent extends Component
     {
         $this->validate([
             'name' => 'required ',
-            'slug' => 'required |unique:products',
+            'slug' => 'required ',
             'short_description' => 'required',
             'description' => 'required',
             'regular_price' => 'required |numeric',
@@ -84,9 +128,14 @@ class EditProductComponent extends Component
             'SKU' => 'required',
             'stock_status' => 'required',
             'quantity' => 'required |numeric',
-            'new_image' => 'required|mimes: jpeg,jpg,png',
             'category_id' => 'required',
         ]);
+        if($this->new_image)
+        {
+            $this->validate([
+                'new_image' => 'required|mimes: jpeg,jpg,png',
+            ]);
+        }
 
         $product =Product::find($this->product_id);
         $product->name = $this->name;
@@ -101,19 +150,75 @@ class EditProductComponent extends Component
         $product->quantity = $this->quantity;
         if($this->new_image)
         {
+            unlink('assets/images/products'.'/'.$product->image);
             $img_name = Carbon::now()->timestamp.'.'. $this->new_image->extension();
             $this->new_image->storeAs('products',$img_name);
             $product->image = $img_name;
 
         }
+
+        if($this->newImages)
+        {
+            if($product->images)
+            {
+                $images = explode(',',$product->images);
+                foreach($images as $img)
+                {
+                    if($img)
+                    {
+                        unlink('assets/images/products'.'/'.$img);
+                    }
+                }
+            }
+            $imagesName ='';
+            foreach($this->newImages as $key=>$newImg)
+            {
+                $imgName = Carbon::now()->timestamp. $key .'.'. $newImg->extension();
+                $newImg->storeAs('products',$imgName);
+                $imagesName = $imagesName .',' . $imgName;
+            }
+            $product->images = $imagesName;
+        }
         $product->category_id = $this->category_id;
+        if($this->subcategory_id)
+        {
+            $product->subcategory_id = $this->subcategory_id;
+        }
+
         $product->save();
+
+        AttributeValue::where('product_id', $product->id)->delete();
+        foreach($this->attribute_values as $key=>$attribute_value )
+        {
+            $values = explode(',',$attribute_value);
+            foreach($values as $value)
+            {
+                $attr_value = new AttributeValue();
+                $attr_value->product_attribute_id = $key;
+                $attr_value->value = $value;
+                $attr_value->product_id = $product->id;
+                $attr_value->save();
+            }
+        }
 
         session()->flash('message', 'The product Updated successfully');
     }
+
+    public function changeSubcategory()
+    {
+        $this->subcategory_id = 0;
+    }
+
     public function render()
     {
         $categories = Category::all();
-        return view('livewire.admin.edit-product-component',['categories'=>$categories])->layout('layouts.base');
+        $subcategories = Subcategory::where('category_id', $this->category_id)->get();
+        $productAttribute = Productattribute::all();
+
+        return view('livewire.admin.edit-product-component',[
+            'categories'=>$categories ,
+             'subcategories'=>$subcategories,
+             'productAttrs' => $productAttribute,
+             ])->layout('layouts.base');
     }
 }

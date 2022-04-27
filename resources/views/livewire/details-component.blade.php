@@ -7,19 +7,34 @@
                 <li class="item-link"><a href="/" class="link">home</a></li>
                 <li class="item-link"><span>detail</span></li>
             </ul>
+
+
+
+
         </div>
         <div class="row">
 
             <div class="col-lg-9 col-md-8 col-sm-8 col-xs-12 main-content-area">
                 <div class="wrap-product-detail">
                     <div class="detail-media">
-                        <div class="product-gallery">
+                        <div class="product-gallery" wire:ignore>
                             <ul class="slides">
 
                                 <li data-thumb="{{ asset('assets/images/products') }}/{{ $product->image }}">
                                     <img src="{{ asset('assets/images/products') }}/{{ $product->image }}"
-                                        alt="product thumbnail" />
+                                        alt="{{$product->name}}" />
                                 </li>
+                                @php
+                                    $images = explode(',',$product->images);
+                                @endphp
+                                @foreach ($images as $image)
+                                    @if ($image)
+                                        <li data-thumb="{{ asset('assets/images/products') }}/{{ $image }}">
+                                            <img src="{{ asset('assets/images/products') }}/{{ $image }}"
+                                            alt="{{$product->name}}" />
+                                        </li>
+                                    @endif
+                                @endforeach
                             </ul>
                         </div>
                     </div>
@@ -51,7 +66,7 @@
                                     alt=""></a>
                         </div>
 
-                        @if ( $product->sale_price > 0&& $sale_date->status == 1 && $sale_date->sale_date > Carbon\Carbon::now())
+                        @if ( $product->sale_price > 0 && $sale_date->status == 1 && $sale_date->sale_date > Carbon\Carbon::now())
 							<div class="wrap-price">
                                 <ins><p class="product-price">${{$product->sale_price}}</p></ins>
                                 <del><p class="product-price">${{$product->regular_price}}</p></del>
@@ -64,7 +79,26 @@
                         <div class="stock-info in-stock">
                             <p class="availability">Availability: <b>{{ $product->stock_status }}</b></p>
                         </div>
-                        <div class="quantity">
+
+                        <div>
+                            @foreach ($product->attributevalue as $av )
+                                <div class="row" style="margin-top=20px;">
+                                    <div class="col-xs-2">
+                                        <p>{{$av->productAttribute->name}}</p>
+                                    </div>
+                                    <div class="col-xs-10">
+                                        <select class="form-controle" style="width:200px">
+                                            @foreach ($av->productAttribute->attributeValue->where('product_id',$product->id) as $pav )
+                                                <option value="{{$pav->id}}">{{$pav->value}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+
+                            @endforeach
+                        </div>
+
+                        <div class="quantity" style="margin-top=20px;">
                             <span>Quantity: </span>
                             <div class="quantity-input">
                                 <input type="text" name="product-quatity" value="{{$qty}}" data-max="120" pattern="[0-9]*" wire:model='qty'>
@@ -82,6 +116,7 @@
                             <a href="#" class="btn add-to-cart"
                             wire:click.prevent="store({{$product->id}},'{{$product->name}}', {{$product->regular_price}})"
                             >Add to Cart</a>
+
                         @endif
                             <div class="wrap-btn">
                                 <a href="#" class="btn btn-compare">Add Compare</a>
@@ -138,7 +173,7 @@
                                             <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1"
                                                 id="li-comment-20">
                                                 <div id="comment-20" class="comment_container">
-                                                    <img alt="" src="{{ asset('assets/images/author-avata.jpg') }}"
+                                                    <img alt="" src="{{ asset('assets/images/profile')}}/{{$orderItem->order->user->profile->image}}"
                                                         height="80" width="80">
                                                     <div class="comment-text">
                                                         <div class="star-rating">
