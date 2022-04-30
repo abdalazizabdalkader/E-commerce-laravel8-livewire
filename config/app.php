@@ -162,6 +162,10 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+<<<<<<< HEAD
+=======
+        Cartalyst\Stripe\Laravel\StripeServiceProvider::class,
+>>>>>>> 4b55769b9f8144b16b37cb50a637b82e1ac2f3ab
         /*
          * Package Service Providers...
          */
@@ -232,6 +236,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+<<<<<<< HEAD
+=======
+        'Stripe' => Cartalyst\Stripe\Laravel\Facades\Stripe::class,
+>>>>>>> 4b55769b9f8144b16b37cb50a637b82e1ac2f3ab
     ],
 
 ];

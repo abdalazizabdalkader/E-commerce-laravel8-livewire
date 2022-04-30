@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "537820767c2c8eae0be9bda48605c266",
+    "content-hash": "57026e16fa164868f8efa452696b8463",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -175,6 +175,130 @@
                 }
             ],
             "time": "2021-08-15T20:50:18+00:00"
+        },
+        {
+            "name": "cartalyst/stripe",
+            "version": "v2.4.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cartalyst/stripe.git",
+                "reference": "e75b4d714fec5f034d533e55f5365f0229b5686d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cartalyst/stripe/zipball/e75b4d714fec5f034d533e55f5365f0229b5686d",
+                "reference": "e75b4d714fec5f034d533e55f5365f0229b5686d",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6.0|~7.0",
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "component": "package",
+                "branch-alias": {
+                    "dev-master": "2.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Cartalyst\\Stripe\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Cartalyst LLC",
+                    "email": "help@cartalyst.com",
+                    "homepage": "https://cartalyst.com"
+                }
+            ],
+            "description": "A comprehensive Stripe API package.",
+            "keywords": [
+                "cartalyst",
+                "php",
+                "stripe"
+            ],
+            "support": {
+                "issues": "https://github.com/cartalyst/stripe/issues",
+                "source": "https://github.com/cartalyst/stripe/tree/v2.4.6"
+            },
+            "time": "2021-10-09T10:40:49+00:00"
+        },
+        {
+            "name": "cartalyst/stripe-laravel",
+            "version": "v13.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cartalyst/stripe-laravel.git",
+                "reference": "2f2b2b4e0de0fc0bce61a95134031ec2c732f999"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cartalyst/stripe-laravel/zipball/2f2b2b4e0de0fc0bce61a95134031ec2c732f999",
+                "reference": "2f2b2b4e0de0fc0bce61a95134031ec2c732f999",
+                "shasum": ""
+            },
+            "require": {
+                "cartalyst/stripe": "^2.0",
+                "illuminate/support": "^8.0",
+                "php": "^7.3 || ^8.0"
+            },
+            "require-dev": {
+                "cartalyst/php-cs-fixer-config": "^1.0",
+                "phpunit/phpunit": "^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "component": "implementation",
+                "branch-alias": {
+                    "dev-master": "13.0.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Cartalyst\\Stripe\\Laravel\\StripeServiceProvider"
+                    ],
+                    "aliases": {
+                        "Stripe": "Cartalyst\\Stripe\\Laravel\\Facades\\Stripe"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Cartalyst\\Stripe\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Cartalyst LLC",
+                    "email": "help@cartalyst.com",
+                    "homepage": "https://cartalyst.com"
+                }
+            ],
+            "description": "Laravel 8 integration for the Cartalyst Stripe package.",
+            "keywords": [
+                "cartalyst",
+                "laravel",
+                "php",
+                "stripe"
+            ],
+            "support": {
+                "issues": "https://github.com/cartalyst/stripe-laravel/issues",
+                "source": "https://github.com/cartalyst/stripe-laravel/tree/v13.1.0"
+            },
+            "time": "2020-12-23T13:33:41+00:00"
         },
         {
             "name": "dasprid/enum",
@@ -1495,6 +1619,7 @@
         },
         {
             "name": "laravel/jetstream",
+<<<<<<< HEAD
             "version": "v2.7.3",
             "source": {
                 "type": "git",
@@ -1505,6 +1630,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/jetstream/zipball/1e7975056a5c86de779e2744e18ecfb49081ab4f",
                 "reference": "1e7975056a5c86de779e2744e18ecfb49081ab4f",
+=======
+            "version": "v2.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/jetstream.git",
+                "reference": "02f606f6b0ceea784e6f3110165d61173129d9df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/jetstream/zipball/02f606f6b0ceea784e6f3110165d61173129d9df",
+                "reference": "02f606f6b0ceea784e6f3110165d61173129d9df",
+>>>>>>> 4b55769b9f8144b16b37cb50a637b82e1ac2f3ab
                 "shasum": ""
             },
             "require": {
@@ -1557,7 +1694,11 @@
                 "issues": "https://github.com/laravel/jetstream/issues",
                 "source": "https://github.com/laravel/jetstream"
             },
+<<<<<<< HEAD
             "time": "2022-04-08T09:04:45+00:00"
+=======
+            "time": "2022-04-03T22:04:27+00:00"
+>>>>>>> 4b55769b9f8144b16b37cb50a637b82e1ac2f3ab
         },
         {
             "name": "laravel/sanctum",

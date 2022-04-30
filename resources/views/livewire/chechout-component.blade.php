@@ -9,7 +9,11 @@
             </ul>
         </div>
     <div class=" main-content-area">
+<<<<<<< HEAD
         <form wire:submit.prevent='placeOrder' onsubmit="$('#processing').show();">
+=======
+        <form wire:submit.prevent='placeOrder'>
+>>>>>>> 4b55769b9f8144b16b37cb50a637b82e1ac2f3ab
             <div class="row">
                 <div class="col-md-12">
                     <div class="wrap-address-billing">
@@ -108,6 +112,10 @@
                                 <p class="row-in-form">
                                     <label for="add">Line 2</label>
                                     <input  type="text" name="add" value="" placeholder="Street at apartment number" wire:model='s_line2'>
+<<<<<<< HEAD
+=======
+                                    @error('s_line2')  <span class="text-danger">{{$message}}</span>  @enderror
+>>>>>>> 4b55769b9f8144b16b37cb50a637b82e1ac2f3ab
                                 </p>
                                 <p class="row-in-form">
                                     <label for="country">Country<span>*</span></label>
@@ -165,6 +173,7 @@
                     @if (Session::has('checkout'))
                     <p class="summary-info grand-total"><span>Grand Total</span> <span class="grand-total-price">${{Session::get('checkout')['total']}}</span></p>
                     @endif
+<<<<<<< HEAD
 
                     @if ($errors->isEmpty())
                         <div id="processing" wire:ignore style="font-size: 22px;margin-bottom:20px;padding-left:37px;color:green;display:none;">
@@ -173,6 +182,8 @@
                         </div>
                     @endif
 
+=======
+>>>>>>> 4b55769b9f8144b16b37cb50a637b82e1ac2f3ab
                     <button class="btn btn-medium">Place order now</button>
                 </div>
                 <div class="summary-item shipping-method">
