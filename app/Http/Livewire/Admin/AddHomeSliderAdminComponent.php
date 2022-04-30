@@ -17,13 +17,15 @@ class AddHomeSliderAdminComponent extends Component
     public $price;
     public $link;
     public $status;
+    public $static;
     public $image;
 
     public function mount()
     {
         $this->status = 1;
+        $this->static = 0;
     }
-
+    
     public function addHomeSlider()
     {
         $slider = new HomeSlider();
@@ -32,6 +34,7 @@ class AddHomeSliderAdminComponent extends Component
         $slider->price= $this->price;
         $slider->link= $this->link;
         $slider->status= $this->status;
+        $slider->static= $this->static;
         $imgName = Carbon::now()->timestamp.'.'.$this->image->extension();
         $this->image->storeAs('sliders',$imgName);
         $slider->image= $imgName;

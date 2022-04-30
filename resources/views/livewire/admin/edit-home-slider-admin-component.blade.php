@@ -53,6 +53,16 @@
                             </div>
 
                             <div class="form-group">
+                                <label  class="col-md-4 control-label" >Static</label>
+                                <div class="col-md-4">
+                                    <select class="form-control" wire:model='static'>
+                                        <option value="0">in slider</option>
+                                        <option value="1">static</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
                                 <label  class="col-md-4 control-label" >Image</label>
                                 <div class="col-md-4">
                                     <input type="file" class=" input-file" wire:model='new_image'>

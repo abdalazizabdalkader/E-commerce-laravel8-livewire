@@ -83,17 +83,6 @@
                             </div>
                         </div>
 
-                        <div class="wrap-footer-item footer-item-second">
-                            <h3 class="item-header">Sign up for newsletter</h3>
-                            <div class="item-content">
-                                <div class="wrap-newletter-footer">
-                                    <form action="#" class="frm-newletter" id="frm-newletter">
-                                        <input type="email" class="input-email" name="email" value="" placeholder="Enter your email address">
-                                        <button class="btn-submit">Subscribe</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
 
@@ -104,25 +93,10 @@
                                 <div class="item-content">
                                     <div class="wrap-vertical-nav">
                                         <ul>
-                                            <li class="menu-item"><a href="#" class="link-term">My Account</a></li>
-                                            <li class="menu-item"><a href="#" class="link-term">Brands</a></li>
-                                            <li class="menu-item"><a href="#" class="link-term">Gift Certificates</a></li>
-                                            <li class="menu-item"><a href="#" class="link-term">Affiliates</a></li>
-                                            <li class="menu-item"><a href="#" class="link-term">Wish list</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="wrap-footer-item twin-item">
-                                <h3 class="item-header">Infomation</h3>
-                                <div class="item-content">
-                                    <div class="wrap-vertical-nav">
-                                        <ul>
-                                            <li class="menu-item"><a href="#" class="link-term">Contact Us</a></li>
-                                            <li class="menu-item"><a href="#" class="link-term">Returns</a></li>
-                                            <li class="menu-item"><a href="#" class="link-term">Site Map</a></li>
-                                            <li class="menu-item"><a href="#" class="link-term">Specials</a></li>
-                                            <li class="menu-item"><a href="#" class="link-term">Order History</a></li>
+                                            <li class="menu-item"><a href="{{route('user.dashboard')}}" class="link-term">My Account</a></li>
+                                            <li class="menu-item"><a href="/shop" class="link-term">Shopping</a></li>
+                                            <li class="menu-item"><a href="/cart" class="link-term">My Cart</a></li>
+                                            <li class="menu-item"><a href="/wishlist" class="link-term">Wish list</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -134,18 +108,9 @@
 
                 <div class="row">
 
-                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-                        <div class="wrap-footer-item">
-                            <h3 class="item-header">We Using Safe Payments:</h3>
-                            <div class="item-content">
-                                <div class="wrap-list-item wrap-gallery">
-                                    <img src="{{asset('assets/images/payment.png')}}" style="max-width: 260px;">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
+
+                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12" style="margin-bottom: 30px;">
                         <div class="wrap-footer-item">
                             <h3 class="item-header">Social network</h3>
                             <div class="item-content">
@@ -162,23 +127,11 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
-                        <div class="wrap-footer-item">
-                            <h3 class="item-header">Dowload App</h3>
-                            <div class="item-content">
-                                <div class="wrap-list-item apps-list">
-                                    <ul>
-                                        <li><a href="#" class="link-to-item" title="our application on apple store"><figure><img src="{{asset('assets/images/brands/apple-store.png')}}" alt="apple store" width="128" height="36"></figure></a></li>
-                                        <li><a href="#" class="link-to-item" title="our application on google play store"><figure><img src="{{asset('assets/images/brands/google-play-store.png')}}" alt="google play store" width="128" height="36"></figure></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
 
                 </div>
             </div>
-
+{{--
             <div class="wrap-back-link">
                 <div class="container">
                     <div class="back-link-box">
@@ -227,26 +180,15 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
         </div>
 
         <div class="coppy-right-box">
             <div class="container">
-                <div class="coppy-right-item item-left">
+                <div class="coppy-right-item center-section">
                     <p class="coppy-right-text">Make with <i class='fa fa-heart text-danger'></i> by Abdulaziz abdulkader</p>
                 </div>
-                <div class="coppy-right-item item-right">
-                    <div class="wrap-nav horizontal-nav">
-                        <ul>
-                            <li class="menu-item"><a href="about-us.html" class="link-term">About us</a></li>
-                            <li class="menu-item"><a href="privacy-policy.html" class="link-term">Privacy Policy</a></li>
-                            <li class="menu-item"><a href="terms-conditions.html" class="link-term">Terms & Conditions</a></li>
-                            <li class="menu-item"><a href="return-policy.html" class="link-term">Return Policy</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
             </div>
         </div>
     </div>

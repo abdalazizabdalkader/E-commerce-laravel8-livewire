@@ -48,6 +48,7 @@
                                         <th>{{ $homeSlider->price }}</th>
                                         <th>{{ $homeSlider->link }}</th>
                                         <th>{{ $homeSlider->status ? 'Active':'Inactive' }}</th>
+                                        <th>{{ $homeSlider->static ? 'static':'In slider' }}</th>
                                         <th>
                                             <a href="{{route('admin.edithomeslider',['slide_id'=>$homeSlider->id ])}}"><i class="fa fa-edit fa-2x"></i></a>
                                             <a href="#" class="px-10" wire:click.prevent='deleteSlider({{$homeSlider->id }})'><i class="fa fa-times fa-2x text-danger ml-12 "></i></a>

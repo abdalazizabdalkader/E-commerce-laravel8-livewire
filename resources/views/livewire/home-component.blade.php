@@ -6,37 +6,42 @@
             <div class="slide-carousel owl-carousel style-nav-1" data-items="1" data-loop="1" data-nav="true"
                 data-dots="false">
                 @foreach ($homeSliders as $homeSlider)
-                    <div class="item-slide">
-                        <img src="{{ asset('assets/images/sliders') }}/{{ $homeSlider->image }}" alt=""
-                            class="img-slide">
-                        <div class="slide-info slide-1">
-                            <h2 class="f-title">{{ $homeSlider->title }}</h2>
-                            <span class="subtitle">{{ $homeSlider->sub_title }}</span>
-                            <p class="sale-info">Only price: <span
-                                    class="price">${{ $homeSlider->price }}</span></p>
-                            <a href="{{ $homeSlider->link }}" class="btn-link">Shop Now</a>
+                    @if(!$homeSlider->static)
+                        <div class="item-slide">
+                            <img src="{{ asset('assets/images/sliders') }}/{{ $homeSlider->image }}" alt=""
+                                class="img-slide">
+                            <div class="slide-info slide-1">
+                                <h2 class="f-title">{{ $homeSlider->title }}</h2>
+                                <span class="subtitle">{{ $homeSlider->sub_title }}</span>
+                                <p class="sale-info">Only price: <span
+                                        class="price">${{ $homeSlider->price }}</span></p>
+                                <a href="{{ $homeSlider->link }}" class="btn-link">Shop Now</a>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 @endforeach
             </div>
         </div>
 
         <!--BANNER-->
-        <div class="wrap-banner style-twin-default">
-            <div class="banner-item">
-                <a href="#" class="link-banner banner-effect-1">
-                    <figure><img src="{{ asset('assets/images/home-1-banner-1.jpg') }}" alt="" width="580" height="190">
-                    </figure>
-                </a>
-            </div>
-            <div class="banner-item">
-                <a href="#" class="link-banner banner-effect-1">
-                    <figure><img src="{{ asset('assets/images/home-1-banner-2.jpg') }}" alt="" width="580" height="190">
-                    </figure>
-                </a>
-            </div>
-        </div>
-
+        @foreach ($homeSliders as $homeSlider)
+            @if($homeSlider->static)
+                <div class="wrap-banner style-twin-default">
+                    <div class="banner-item">
+                        <a href="{{ $homeSlider->link }}" class="link-banner banner-effect-1">
+                            <figure><img src="{{ asset('assets/images/sliders') }}/{{ $homeSlider->image }}" alt="" width="580" height="190">
+                            </figure>
+                        </a>
+                    </div>
+                    {{-- <div class="banner-item">
+                        <a href="#" class="link-banner banner-effect-1">
+                            <figure><img src="{{ asset('assets/images/home-1-banner-2.jpg') }}" alt="" width="580" height="190">
+                            </figure>
+                        </a>
+                    </div> --}}
+                </div>
+            @endif
+        @endforeach
         <!--On Sale-->
         @if ($sale_products->count() > 0 && $sale_date->status == 1 && $sale_date->sale_date > Carbon\Carbon::now())
         <div class="wrap-show-advance-info-box style-1 has-countdown">

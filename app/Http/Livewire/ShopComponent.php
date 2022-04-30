@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\ProductAttribute;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Cart;
@@ -44,7 +45,7 @@ class ShopComponent extends Component
     public function removeWishList($product_id)
     {
 
-        dd(Cart::instance('wishList')->content());
+        // dd(Cart::instance('wishList')->content());
         foreach(Cart::instance('wishList')->content() as $item)
         {
             if($item->id == $product_id)
@@ -80,6 +81,9 @@ class ShopComponent extends Component
             Cart::instance('cart')->store(Auth::user()->email);
             Cart::instance('wishList')->store(Auth::user()->email);
         }
-        return view('livewire.shop-component',['products'=>$products, 'categories'=>$categories])->layout('layouts.base');
+        return view('livewire.shop-component',[
+                    'products'=>$products,
+                     'categories'=>$categories,
+                     ])->layout('layouts.base');
     }
 }

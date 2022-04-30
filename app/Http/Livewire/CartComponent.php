@@ -158,6 +158,9 @@ class CartComponent extends Component
 
     public function render()
     {
+
+        $popular_products = Product::inRandomOrder()->limit(8)->get();
+
         if(session()->has('coupon'))
         {
             if(Cart::instance('cart')->subtotal() < session()->get('coupon')['cart_value'])
@@ -174,6 +177,6 @@ class CartComponent extends Component
         {
             Cart::instance('cart')->store(Auth::user()->email);
         }
-        return view('livewire.cart-component')->layout('layouts.base');
+        return view('livewire.cart-component',['popular_products'=>$popular_products])->layout('layouts.base');
     }
 }

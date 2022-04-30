@@ -63,7 +63,6 @@ use Illuminate\Support\Facades\Route;
     Route::get('/',HomeComponent::class)->name('home');
     Route::get('/shop',ShopComponent::class);
     Route::get('/cart',CartComponent::class)->name('product.cart');
-    Route::get('/aboutus',AboutusComponent::class)->name('aboutus');
     Route::get('/checkout',CheckoutComponent::class);
     Route::get('/product/details/{slug}',DetailsComponent::class)->name('product.details');
     Route::get('/product-category/{category_slug}/{subcategory_slug?}',CategoryComponent::class)->name('product.category');
@@ -79,7 +78,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth:sanctum', 'verified',])->group(function(){
 
     Route::get('/user/dashboard',UserDashboardComponent::class)->name('user.dashboard');
-    Route::get('/admin/categories', CategoryAdminComponent::class)->name('admin.categories');
     Route::get('/user/myOrders',OrdersUserComponent::class)->name('user.orders');
     Route::get('/user/myOrder/details/{order_id}',OrderDetailsUserComponent::class)->name('user.orderdetails');
     Route::get('/user/review/{order_item_id}', ReviewUserComponent::class)->name('user.review');
@@ -92,6 +90,7 @@ Route::middleware(['auth:sanctum', 'verified',])->group(function(){
 Route::middleware(['auth:sanctum', 'verified','AuthAdmin'])->group(function(){
 
     Route::get('/admin/dashboard',AdminDashboardComponent::class)->name('admin.dashboard');
+    Route::get('/admin/categories', CategoryAdminComponent::class)->name('admin.categories');
     Route::get('/admin/categories/add', AddCategoryAdminComponent::class)->name('admin.addcategories');
     Route::get('/admin/categories/edit/{category_slug}/{subcategory_slug?}',EditCategoryAdminComponent::class)->name('admin.editcategory');
     Route::get('/admin/products',AdminProductAdminComponent::class)->name('admin.product');

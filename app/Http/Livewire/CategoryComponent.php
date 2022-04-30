@@ -15,14 +15,17 @@ class CategoryComponent extends Component
     public $sorting;
     public $sizePage;
     public $category_slug;
-
     public $subcategory_slug;
+    public $min_price_filter;
+    public $max_price_filter;
     public function mount($category_slug, $subcategory_slug = null)
     {
         $this->sorting = 'default';
         $this->sizePage = 12;
         $this->category_slug = $category_slug;
         $this->subcategory_slug = $subcategory_slug;
+        $this->min_price_filter = 1;
+        $this->max_price_filter = 1000;
     }
 
     public function store($product_id, $product_name, $product_price)
@@ -53,15 +56,16 @@ class CategoryComponent extends Component
 
 
         if ($this->sorting === 'date') {
-            $products = Product::where($filter.'category_id',$category_id)->orderBy('created_at', 'DESC')->paginate($this->sizePage);
+            $products = Product::whereBetween('regular_price',[$this->min_price_filter, $this->max_price_filter])->where($filter.'category_id',$category_id)->orderBy('created_at', 'DESC')->paginate($this->sizePage);
         } elseif ($this->sorting === 'price') {
-            $products = Product::where($filter.'category_id',$category_id)->orderBy('regular_price', 'ASC')->paginate($this->sizePage);
+            $products = Product::whereBetween('regular_price',[$this->min_price_filter, $this->max_price_filter])->where($filter.'category_id',$category_id)->orderBy('regular_price', 'ASC')->paginate($this->sizePage);
         } elseif ($this->sorting === 'price-desc') {
-            $products = Product::where($filter.'category_id',$category_id)->orderBy('regular_price', 'DESC')->paginate($this->sizePage);
+            $products = Product::whereBetween('regular_price',[$this->min_price_filter, $this->max_price_filter])->where($filter.'category_id',$category_id)->orderBy('regular_price', 'DESC')->paginate($this->sizePage);
         } else {
-            $products = Product::where($filter.'category_id',$category_id)->paginate($this->sizePage);
+            $products = Product::whereBetween('regular_price',[$this->min_price_filter, $this->max_price_filter])->where($filter.'category_id',$category_id)->paginate($this->sizePage);
         }
         $categories = Category::all();
+        
         return view('livewire.category-component', [
             'products' => $products,
             'categories' => $categories,

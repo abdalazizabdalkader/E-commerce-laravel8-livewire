@@ -16,6 +16,7 @@ class EditHomeSliderAdminComponent extends Component
     public $price;
     public $link;
     public $status;
+    public $static;
     public $image;
     public $new_image;
     public $slider_id;
@@ -28,11 +29,12 @@ class EditHomeSliderAdminComponent extends Component
         $this->price = $slider->price;
         $this->link = $slider->link;
         $this->status = $slider->status;
+        $this->static = $slider->static;
         $this->image = $slider->image;
         $this->slider_id = $slide_id;
     }
 
-    public function updateSlider()  
+    public function updateSlider()
     {
         $slider = HomeSlider::find($this->slider_id);
          $slider->title =  $this->title;
@@ -40,6 +42,7 @@ class EditHomeSliderAdminComponent extends Component
          $slider->price =  $this->price;
          $slider->link =  $this->link;
          $slider->status =  $this->status;
+         $slider->static =  $this->static;
          if($this->new_image)
          {
             $imgName = Carbon::now()->timestamp.'.'.$this->new_image->extension();
