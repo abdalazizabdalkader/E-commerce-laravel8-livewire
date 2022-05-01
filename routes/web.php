@@ -36,13 +36,10 @@ use App\Http\Livewire\ProfileComponent;
 use App\Http\Livewire\SearchComponent;
 use App\Http\Livewire\ShopComponent;
 use App\Http\Livewire\ThankyouComponent;
-<<<<<<< HEAD
 use App\Http\Livewire\User\EditProfileComponent;
 use App\Http\Livewire\User\OrderDetailsUserComponent;
 use App\Http\Livewire\User\OrdersUserComponent;
 use App\Http\Livewire\User\ReviewUserComponent;
-=======
->>>>>>> 4b55769b9f8144b16b37cb50a637b82e1ac2f3ab
 use App\Http\Livewire\User\UserDashboardComponent;
 use App\Http\Livewire\WishListComponent;
 use App\Models\Sale;
@@ -59,9 +56,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+
 
     Route::get('/',HomeComponent::class)->name('home');
     Route::get('/shop',ShopComponent::class);
@@ -73,13 +68,8 @@ use Illuminate\Support\Facades\Route;
     Route::get('/wishlist',WishListComponent::class)->name('product.wishlist');
     Route::get('/checkout',CheckoutComponent::class)->name('checkout');
     Route::get('/thankyou',ThankyouComponent::class)->name('thankyou');
-<<<<<<< HEAD
     Route::get('/contactus',ContactusComponent::class)->name('contactus');
-=======
->>>>>>> 4b55769b9f8144b16b37cb50a637b82e1ac2f3ab
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');
+
 //for users or customers
 Route::middleware(['auth:sanctum', 'verified',])->group(function(){
 

@@ -79,7 +79,6 @@ class CartComponent extends Component
     public function applyCouponCode()
     {
         $coupon = Coupon::where('code',$this->couponCode)->where('expiry_date','>=', Carbon::today())->where('cart_value', '<=', Cart::instance('cart')->subtotal())->first();
-    //    dd($coupon);
         if(!$coupon)
         {
             session()->flash('message', 'the coupon code is invalide!!');
@@ -105,7 +104,6 @@ class CartComponent extends Component
             {
                 $this->discount = (Cart::instance('cart')->subtotal() * session()->get('coupon')['value'])/100;
             }
-            // dd($this->discount);
             $this->subtotalAfterDiscount = (Cart::instance('cart')->subtotal() - $this->discount);
             $this->taxAfterDiscount = (Cart::instance('cart')->subtotal() * config('cart.tax'))/100;
             $this->TotalAfterDiscount = $this->subtotalAfterDiscount + $this->taxAfterDiscount;
@@ -158,12 +156,9 @@ class CartComponent extends Component
 
     public function render()
     {
-<<<<<<< HEAD
 
         $popular_products = Product::inRandomOrder()->limit(8)->get();
 
-=======
->>>>>>> 4b55769b9f8144b16b37cb50a637b82e1ac2f3ab
         if(session()->has('coupon'))
         {
             if(Cart::instance('cart')->subtotal() < session()->get('coupon')['cart_value'])
@@ -175,15 +170,11 @@ class CartComponent extends Component
             }
         }
         $this->setAmountForCheckout();
-<<<<<<< HEAD
 
         if(Auth::check())
         {
             Cart::instance('cart')->store(Auth::user()->email);
         }
         return view('livewire.cart-component',['popular_products'=>$popular_products])->layout('layouts.base');
-=======
-        return view('livewire.cart-component')->layout('layouts.base');
->>>>>>> 4b55769b9f8144b16b37cb50a637b82e1ac2f3ab
     }
 }

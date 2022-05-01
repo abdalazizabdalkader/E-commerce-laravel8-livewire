@@ -46,19 +46,17 @@ class DetailsComponent extends Component
     public function removeWishList($product_id)
     {
 
-        // dd(Cart::instance('wishList')->content());
         foreach(Cart::instance('wishList')->content() as $item)
         {
             if($item->id == $product_id)
             {
-                // dd($item->id);
                 Cart::instance('wishList')->remove($item->rowId);
                 $this->emitTo('wishlist-count-component','refreshComponent');
                 return;
             }
         }
     }
-    
+
     public function render()
     {
         $product = Product::where('slug',$this->slug)->first();

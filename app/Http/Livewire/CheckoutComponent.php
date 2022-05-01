@@ -2,10 +2,6 @@
 
 namespace App\Http\Livewire;
 
-<<<<<<< HEAD
-use App\Mail\Ordermail;
-=======
->>>>>>> 4b55769b9f8144b16b37cb50a637b82e1ac2f3ab
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Shipping;
@@ -13,10 +9,6 @@ use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Cart;
-<<<<<<< HEAD
-use Illuminate\Support\Facades\Mail;
-=======
->>>>>>> 4b55769b9f8144b16b37cb50a637b82e1ac2f3ab
 
 class CheckoutComponent extends Component
 {
@@ -46,11 +38,7 @@ class CheckoutComponent extends Component
     public $s_zipcode;
 
     public $paymentMod;
-<<<<<<< HEAD
     public $thankyou;
-=======
-    public $thanhyou;
->>>>>>> 4b55769b9f8144b16b37cb50a637b82e1ac2f3ab
 
     public function updated($fields)
     {
@@ -126,13 +114,10 @@ class CheckoutComponent extends Component
             $orderItem->order_id = $order->id;
             $orderItem->price = $item->price;
             $orderItem->quantity = $item->qty;
-<<<<<<< HEAD
             if($item->options)
             {
                 $orderItem->options = serialize($item->options);
             }
-=======
->>>>>>> 4b55769b9f8144b16b37cb50a637b82e1ac2f3ab
             $orderItem->save();
         }
 
@@ -174,7 +159,6 @@ class CheckoutComponent extends Component
             $transaction->status = 'pending';
             $transaction->save();
         }
-<<<<<<< HEAD
         $this->thankyou = 1;
         Cart::instance('cart')->destroy();
         session()->forget('checkout');
@@ -183,16 +167,6 @@ class CheckoutComponent extends Component
         $this->sendConfirmationMail($order);
     }
 
-    public function sendConfirmationMail($order)
-    {
-        Mail::to($order->email)->send(new Ordermail($order));
-=======
-        $this->thanhyou = 1;
-        Cart::instance('cart')->destroy();
-        session()->forget('checkout');
-
->>>>>>> 4b55769b9f8144b16b37cb50a637b82e1ac2f3ab
-    }
 
 
     public function verifayForCheckout()
@@ -201,11 +175,7 @@ class CheckoutComponent extends Component
         {
             return redirect()->route('login');
         }
-<<<<<<< HEAD
         else if($this->thankyou)
-=======
-        else if($this->thanhyou)
->>>>>>> 4b55769b9f8144b16b37cb50a637b82e1ac2f3ab
         {
             return redirect()->route('thankyou');
         }

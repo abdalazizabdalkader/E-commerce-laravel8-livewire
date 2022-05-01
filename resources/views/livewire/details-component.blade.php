@@ -185,7 +185,8 @@
 
                                         <h2 class="woocommerce-Reviews-title">
                                             {{$product->orderItems->where('review_status',1)->count()}} review for
-                                            <span>{{$product->name}}</span></h2>
+                                            <span>{{$product->name}}</span>
+                                        </h2>
                                         <ol class="commentlist">
                                             @foreach ($product->orderItems->where('review_status',1) as $orderItem)
                                             <li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1"

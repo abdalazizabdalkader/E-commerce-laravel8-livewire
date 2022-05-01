@@ -9,7 +9,6 @@ use Livewire\WithPagination;
 class CategoryAdminComponent extends Component
 {
     use WithPagination;
-    // protected $paginationTheme = 'bootstrap';
     public function deleteCategory($id)
     {
         $category = Category::find($id);

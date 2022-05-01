@@ -9,11 +9,7 @@
             </ul>
         </div>
     <div class=" main-content-area">
-<<<<<<< HEAD
         <form wire:submit.prevent='placeOrder' onsubmit="$('#processing').show();">
-=======
-        <form wire:submit.prevent='placeOrder'>
->>>>>>> 4b55769b9f8144b16b37cb50a637b82e1ac2f3ab
             <div class="row">
                 <div class="col-md-12">
                     <div class="wrap-address-billing">

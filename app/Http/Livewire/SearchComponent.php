@@ -16,7 +16,6 @@ class SearchComponent extends Component
     public $search;
     public $product_cat;
     public $product_cat_id;
-    // public $categories;
     public function mount()
     {
         $this->sorting = 'default';
